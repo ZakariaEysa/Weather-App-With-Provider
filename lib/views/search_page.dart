@@ -1,20 +1,15 @@
-
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../Providers/weather_provider.dart';
+import '../models/weather_model.dart';
+import '../serveses/weather_service.dart';
+import 'home_page.dart';
 
-import '../Providers/weatherprovider.dart';
-import '../models/weathermodel.dart';
-import '../serveses/weatherservice.dart';
-import 'homepage.dart';
 
-
-// Widget? wodel;
-
-class search_page extends StatelessWidget {
-  search_page({super.key});
+class SearchPage extends StatelessWidget {
+  const SearchPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,40 +23,21 @@ class search_page extends StatelessWidget {
         child: Center(
           child: TextField(
             onSubmitted: (value) async {
-              weatherserves we= weatherserves(dio:Dio() );
-             weathermodel Weathermodel= await   we.get_Current_Weather(country: value!);
-          //   print("sdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+              WeatherServices we = WeatherServices(dio: Dio());
+              WeatherModel weatherModel =
+                  await we.getCurrentWeather(country: value);
 
+              Provider.of<WeatherProvider>(context, listen: false).weatherData =
+                  weatherModel;
+              HomePage.s = true;
 
+              HomePage.s = true;
 
-              Provider.of<WeatherProvider>(context,listen: false).weatherdata =Weathermodel;
-              Home_Page.s=true;
-
-//              https://api.weatherapi.com/v1/forecast.json?key=7be042ed61094e4d899184108232210&q=cairo
-
-              // Navigator.of(context).push(MaterialPageRoute(
-              //   builder: (context) {
-              //     return Weathe_Body_Info(
-              //       cityname: Weathermodel.cityname,
-              //       date: Weathermodel.date,
-              //       maxtemp: Weathermodel.maxtemp,
-              //       mintemp: Weathermodel.mintemp,
-              //       status: Weathermodel.status,
-              //       temp: Weathermodel.temp,
-              //     );
-              //   },
-              // ));
-
-              Home_Page.s=true;
-
-             Navigator.pop(context);
+              Navigator.pop(context);
             },
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
                 contentPadding:
                     EdgeInsets.symmetric(vertical: 32, horizontal: 16),
-                //   enabledBorder: OutlineInputBorder(),
-                //       focusedBorder: OutlineInputBorder(),
-
                 labelText: 'Search',
                 suffixIcon: Icon(Icons.search),
                 hintText: ("Enter city Name"),

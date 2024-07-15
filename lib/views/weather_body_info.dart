@@ -1,31 +1,25 @@
 import 'package:flutter/material.dart';
 
-class Weathe_Body_Info extends StatelessWidget {
-  Weathe_Body_Info(
+class WeatherBodyInfo extends StatelessWidget {
+  const WeatherBodyInfo(
       {super.key,
-      required this.cityname,
+      required this.cityName,
       required this.date,
       required this.status,
       required this.temp,
-      required this.maxtemp,
-      required this.mintemp});
+      required this.maxTemp,
+      required this.minTemp});
 
-  String? cityname;
-  String date;
-  String status;
-  double temp;
-  double maxtemp;
-  double mintemp;
+  final String? cityName;
+  final String date;
+  final String status;
+  final double temp;
+  final double maxTemp;
+  final double minTemp;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //
-      //   backgroundColor:  Colors.orange,
-      //   elevation: 0,
-      //   title: const Text("Weather App"),
-      // ),
       body: Container(
         width: double.infinity,
         color: Colors.orangeAccent,
@@ -33,14 +27,14 @@ class Weathe_Body_Info extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "$cityname",
+              "$cityName",
               style: const TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
                 fontSize: 32,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             Text(
@@ -49,7 +43,6 @@ class Weathe_Body_Info extends StatelessWidget {
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
                 fontSize: 22,
-
               ),
             ),
             const SizedBox(
@@ -58,7 +51,7 @@ class Weathe_Body_Info extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
                 Image.asset('assets/images/clear.png'),
@@ -72,36 +65,34 @@ class Weathe_Body_Info extends StatelessWidget {
                     fontSize: 32,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
 
                 Column(
                   children: [
                     Text(
-                      'Maxtemp: $maxtemp',
+                      'MaxTemp: $maxTemp',
                       style: const TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
-
                         fontSize: 16,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 25,
                     ),
                     Text(
-                      'Mintemp: $mintemp',
+                      'MinTemp: $minTemp',
                       style: const TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
-
                         fontSize: 16,
                       ),
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
               ],
